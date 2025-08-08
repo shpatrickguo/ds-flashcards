@@ -1,6 +1,6 @@
 ---
-name: New Anki Card
-about: Suggest a new data science question for the Anki deck or improve an existing card.
+name: New Card
+about: Suggest a new data science question or improve an existing card.
 title: "[Card]: <short topic or question summary>"
 labels: anki-card
 ---
