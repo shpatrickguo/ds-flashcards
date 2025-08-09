@@ -182,19 +182,20 @@ def main():
                 tag_list = [tag.strip() for tag in tags.split(',') if tag.strip()]
                 
                 # Create content in the specified format
-                content = f"""---
-name: {name}
-tags: {tag_list}
----
-## Q: {question}
-A: {answer}
-"""
+                content = f"""
+                            ---
+                            name: {name}
+                            tags: {tag_list}
+                            ---
+                            ## Q: {question}
+                            A: {answer}
+                            """
                 if explanation:
                     content += f"""
-### Explanation for Non-Technical Readers
-{explanation}
----
-"""
+                                ### Explanation for Non-Technical Readers
+                                {explanation}
+                                ---
+                                """
                 else:
                     content += "\n---\n"
                 
@@ -334,4 +335,5 @@ A: {answer}
                     st.experimental_rerun()
 
 if __name__ == "__main__":
+
     main()
