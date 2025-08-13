@@ -5,12 +5,12 @@ tags: statistics, hypothesis-testing, statistical-power
 
 ## Q: What is **statistical power** in the context of hypothesis testing?
 
-A: **Statistical power** is the probability that a statistical test will correctly detect an effect when one actually exists. In other words, it is the likelihood that the test will reject the null hypothesis (\( H_0 \)) when the alternative hypothesis (\( H_1 \)) is true[1][3][5]. 
+A: **Statistical power** is the probability that a statistical test will correctly detect an effect when one actually exists. In other words, it is the likelihood that the test will reject the null hypothesis (\( H_0 \)) when the alternative hypothesis (\( H_1 \)) is true. 
 
-- Power is mathematically defined as \( 1 - \beta \), where \( \beta \) is the probability of a *Type II error* (failing to reject a false null hypothesis)[1][5]. 
-- High power means you have a good chance of detecting a true effect; low power means you might miss real effects[3][5].
+- Power is mathematically defined as \( 1 - \beta \), where \( \beta \) is the probability of a *Type II error* (failing to reject a false null hypothesis). 
+- High power means you have a good chance of detecting a true effect; low power means you might miss real effects.
 - Power depends on several factors: **sample size**, **effect size**, **significance level (\( \alpha \))**, and **data variability**.
-- A power of at least **80%** is commonly considered adequate in most scientific studies, which means there’s a 20% chance of missing a true effect[3][5].
+- A power of at least **80%** is commonly considered adequate in most scientific studies, which means there’s a 20% chance of missing a true effect.
 
 ### Explanation for Non-Technical Readers
 
