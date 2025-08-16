@@ -13,7 +13,6 @@ The key differences lie in their scope and purpose: descriptive statistics summa
 
 ### Explanation for Non-Technical Readers
 
-Imagine descriptive statistics as taking a detailed photograph of your current situation. If you surveyed 50 people about their coffee preferences, descriptive statistics would tell you exactly what those 50 people said—perhaps 60% prefer latte, 25% prefer cappuccino, and so on. It's a precise snapshot of that specific group.
+Imagine descriptive statistics as taking a detailed photograph of your current situation. If you surveyed 50 people about their coffee preferences, descriptive statistics would tell you exactly what those 50 people said—perhaps 60% prefer latte, 25% prefer cappuccino, and so on. It's a precise snapshot of that specific group. Inferential statistics is like using that photograph to predict what the entire neighborhood might prefer. It helps you estimate whether the preferences of your 50 people likely represent the whole neighborhood, and how confident you can be in that prediction. It acknowledges that your small group might not perfectly reflect everyone, and provides tools to quantify that uncertainty.
 
-Inferential statistics is like using that photograph to predict what the entire neighborhood might prefer. It helps you estimate whether the preferences of your 50 people likely represent the whole neighborhood, and how confident you can be in that prediction. It acknowledges that your small group might not perfectly reflect everyone, and provides tools to quantify that uncertainty.
 ---
