@@ -1,6 +1,6 @@
 ---
 name: Evaluating Sparse User Behavior Data  
-tags: data-science, predictive-modeling, dataset-evaluation  
+tags: predictive-modeling, dataset-evaluation  
 ---
 
 ## Q: You’re given a dataset with millions of rows but sparse information on user behavior. How would you assess whether the dataset is useful for predictive modeling?
