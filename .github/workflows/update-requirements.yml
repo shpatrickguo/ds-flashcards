@@ -34,8 +34,8 @@ jobs:
           
           # Remove duplicate entries and sort (keep the highest version for duplicates)
           python3 << 'EOF'
-          import re
-          from packaging import version
+          from packaging.requirements import Requirement
+          from packaging.version import Version, InvalidVersion
           
           # Read requirements
           with open('requirements.txt', 'r') as f:
@@ -46,29 +46,42 @@ jobs:
           for line in lines:
               line = line.strip()
               if line and not line.startswith('#'):
-                  match = re.match(r'^([a-zA-Z0-9_-]+)([>=<~!]+)(.+)$', line)
-                  if match:
-                      pkg_name, operator, pkg_version = match.groups()
-                      pkg_name_lower = pkg_name.lower()
+                  try:
+                      req = Requirement(line)
+                      pkg_name_lower = req.name.lower()
                       
-                      # Keep the highest version if duplicate
-                      if pkg_name_lower in packages:
-                          existing_version = packages[pkg_name_lower]['version']
-                          try:
-                              if version.parse(pkg_version) > version.parse(existing_version):
-                                  packages[pkg_name_lower] = {
-                                      'name': pkg_name,
-                                      'operator': operator,
-                                      'version': pkg_version
-                                  }
-                          except:
-                              pass  # Keep existing if version comparison fails
-                      else:
-                          packages[pkg_name_lower] = {
-                              'name': pkg_name,
-                              'operator': operator,
-                              'version': pkg_version
-                          }
+                      # Extract version from specifier (assuming simple == case from pipreqs)
+                      pkg_version = None
+                      operator = None
+                      for spec in req.specifier:
+                          operator = spec.operator
+                          pkg_version = spec.version
+                          break
+                      
+                      if pkg_version and operator:
+                          # Keep the highest version if duplicate
+                          if pkg_name_lower in packages:
+                              existing_version = packages[pkg_name_lower]['version']
+                              try:
+                                  if Version(pkg_version) > Version(existing_version):
+                                      packages[pkg_name_lower] = {
+                                          'name': req.name,
+                                          'operator': operator,
+                                          'version': pkg_version
+                                      }
+                              except InvalidVersion:
+                                  # Keep existing if version comparison fails
+                                  pass
+                          else:
+                              packages[pkg_name_lower] = {
+                                  'name': req.name,
+                                  'operator': operator,
+                                  'version': pkg_version
+                              }
+                  except Exception as e:
+                      # Skip lines that cannot be parsed
+                      print(f"Warning: Could not parse requirement '{line}': {e}")
+                      continue
           
           # Write deduplicated and sorted requirements
           with open('requirements.txt', 'w') as f:
