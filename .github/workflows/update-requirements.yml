@@ -34,7 +34,7 @@ jobs:
           
           # Remove duplicate entries and sort (keep the highest version for duplicates)
           python3 << 'EOF'
-          from packaging.requirements import Requirement
+          from packaging.requirements import Requirement, InvalidRequirement
           from packaging.version import Version, InvalidVersion
           
           # Read requirements
@@ -50,7 +50,7 @@ jobs:
                       req = Requirement(line)
                       pkg_name_lower = req.name.lower()
                       
-                      # Extract version from specifier (assuming simple == case from pipreqs)
+                      # Extract version from specifier
                       pkg_version = None
                       operator = None
                       for spec in req.specifier:
@@ -58,27 +58,38 @@ jobs:
                           pkg_version = spec.version
                           break
                       
+                      # Handle packages with or without version specifiers
                       if pkg_version and operator:
                           # Keep the highest version if duplicate
                           if pkg_name_lower in packages:
-                              existing_version = packages[pkg_name_lower]['version']
-                              try:
-                                  if Version(pkg_version) > Version(existing_version):
-                                      packages[pkg_name_lower] = {
-                                          'name': req.name,
-                                          'operator': operator,
-                                          'version': pkg_version
-                                      }
-                              except InvalidVersion:
-                                  # Keep existing if version comparison fails
-                                  pass
+                              existing = packages[pkg_name_lower]
+                              # Only compare if both have versions
+                              if existing.get('version'):
+                                  try:
+                                      if Version(pkg_version) > Version(existing['version']):
+                                          packages[pkg_name_lower] = {
+                                              'name': req.name,
+                                              'operator': operator,
+                                              'version': pkg_version
+                                          }
+                                  except InvalidVersion:
+                                      # Keep existing if version comparison fails
+                                      pass
                           else:
                               packages[pkg_name_lower] = {
                                   'name': req.name,
                                   'operator': operator,
                                   'version': pkg_version
                               }
-                  except Exception as e:
+                      else:
+                          # Package without version specifier
+                          if pkg_name_lower not in packages:
+                              packages[pkg_name_lower] = {
+                                  'name': req.name,
+                                  'operator': None,
+                                  'version': None
+                              }
+                  except InvalidRequirement as e:
                       # Skip lines that cannot be parsed
                       print(f"Warning: Could not parse requirement '{line}': {e}")
                       continue
@@ -87,7 +98,10 @@ jobs:
           with open('requirements.txt', 'w') as f:
               for pkg_lower in sorted(packages.keys()):
                   pkg = packages[pkg_lower]
-                  f.write(f"{pkg['name']}{pkg['operator']}{pkg['version']}\n")
+                  if pkg['operator'] and pkg['version']:
+                      f.write(f"{pkg['name']}{pkg['operator']}{pkg['version']}\n")
+                  else:
+                      f.write(f"{pkg['name']}\n")
           EOF
           
       - name: Check for changes
