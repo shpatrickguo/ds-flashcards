@@ -1,0 +1,28 @@
+---
+name: Determine Optimal Sample Size for an A/B Test
+tags: statistics, ab-test
+---
+
+## Q: How to Determine Optimal Sample Size for an A/B Test
+
+The optimal sample size in an A/B test depends primarily on:
+
+- The **minimum detectable effect (δ)**: the smallest difference between groups A and B considered meaningful.
+- The **statistical power (1 - β)**: probability of detecting a true effect, commonly set to 80%.
+- The **significance level (α)**: the threshold for false positive rate, often 5%.
+
+### Sample Size Formula (Equal Variances, Two-Sample Test)
+
+\[
+n = \frac{(Z_{\alpha/2} + Z_\beta)^2 \times (\sigma_A^2 + \sigma_B^2)}{\delta^2}
+\]
+
+Where:
+
+- \( n \) = sample size per group
+- \( Z_{\alpha/2} \) = critical value for significance level (e.g., 1.96 for α=0.05)
+- \( Z_\beta \) = critical value for power (e.g., 0.84 for 80% power)
+- \( \sigma_A^2 \), \( \sigma_B^2 \) = variances of groups A and B
+- \( \delta \) = minimum detectable effect size
+
+--
