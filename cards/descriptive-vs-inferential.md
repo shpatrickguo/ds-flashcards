@@ -1,18 +1,32 @@
 ---
 name: Descriptive vs. Inferential Statistics
-tags: statistics, data analysis
+tags: statistics, data-analysis
 ---
 
-## Q: Explain the difference between descriptive and inferential statistics.
+## Q: What is the difference between descriptive and inferential statistics?
 
-A: Descriptive statistics focuses on summarizing and organizing the characteristics of a specific dataset. It tells us what the data looks like through measures like averages, medians, standard deviations, and visual representations like charts or graphs. Essentially, it describes the data we have in front of us without making any claims beyond that specific dataset.
+## Answer (Technical)
 
-Inferential statistics, on the other hand, uses sample data to make broader predictions or inferences about a larger population. It applies probability theory to estimate population parameters, test hypotheses, and determine relationships between variables. This branch accounts for uncertainty and helps us quantify how confident we can be in our conclusions when extending findings beyond our immediate data.
+Descriptive statistics summarize and describe the features of a specific dataset. Typical techniques include:
+- Measures of central tendency (mean, median, mode)
+- Measures of spread (variance, standard deviation, IQR)
+- Frequency counts, histograms, and cross-tabulations
 
-The key differences lie in their scope and purpose: descriptive statistics summarizes what is, while inferential statistics predicts what might be true more broadly. Descriptive statistics deals with certainty about the data at hand, whereas inferential statistics embraces uncertainty and provides tools to manage it when generalizing.
+Descriptive statistics do not attempt to make claims beyond the observed data.
 
-### Explanation for Non-Technical Readers
+Inferential statistics use sample data to make statements or decisions about a broader population. Core methods include:
+- Estimation (point estimates and confidence intervals)
+- Hypothesis testing (t-tests, chi-squared tests, ANOVA)
+- Regression and model-based inference
 
-Imagine descriptive statistics as taking a detailed photograph of your current situation. If you surveyed 50 people about their coffee preferences, descriptive statistics would tell you exactly what those 50 people said—perhaps 60% prefer latte, 25% prefer cappuccino, and so on. It's a precise snapshot of that specific group. Inferential statistics is like using that photograph to predict what the entire neighborhood might prefer. It helps you estimate whether the preferences of your 50 people likely represent the whole neighborhood, and how confident you can be in that prediction. It acknowledges that your small group might not perfectly reflect everyone, and provides tools to quantify that uncertainty.
+Inferential methods rely on probability models and assumptions (random sampling, independence, distributional form) to generalize findings and quantify uncertainty.
 
----
+Key distinction: descriptive = summarize the sample; inferential = draw conclusions about a larger population using the sample.
+
+## Answer (Non-Technical)
+
+Imagine descriptive statistics as taking a detailed photograph of the people you actually measured — it tells you what that group looks like. Inferential statistics is like using that photograph to guess what people in the whole city might be like and saying how confident you are in that guess.
+
+Example:
+- Descriptive: "In our survey of 50 users, 60% prefer coffee over tea."
+- Inferential: "Based on our sample, we estimate that between 55% and 65% of all users prefer coffee (95% confidence)."

@@ -1,6 +1,7 @@
+````markdown
 ---
 name: New Card
-about: Suggest a new data science question or improve an existing card.
+about: Suggest a new data-science flashcard or improve an existing card.
 title: "[Card]: <short topic or question summary>"
 labels: anki-card
 ---
@@ -10,26 +11,38 @@ labels: anki-card
 - [ ] New card
 - [ ] Update to existing card
 
-## Card Filename or Location
+## Target filename or location
 
-<!-- Specify the location in the anki-cards folder, e.g. "anki-cards/statistics/statistical-power.md" or suggest a new filename if adding a new card -->
+- Provide the path where the card should live, e.g. "cards/statistics/statistical-power.md". If you're proposing an update, include the existing filename.
+
+## Front Matter (required)
+
+Provide the YAML front matter exactly as it should appear at the top of the card (name and tags):
+
+```yaml
+---
+name: Title of the Card
+tags: tag1, tag2
+---
+```
 
 ## Question
 
-<!-- Write the question as it should appear on the card -->
+- Write the question as it should appear on the card. Start the question section with a header like: "## Q: Your question here"
 
-## Answer
+## Answer (Technical)
 
-<!-- Write the answer as it should appear on the back of the card. Include explanation, code, or equations as needed. -->
+- Provide the full technical answer. Start this section with the header: "## Answer (Technical)".
 
-## Non-Technical Explanation (Optional)
+## Answer (Non-Technical)
 
-<!-- If possible, add a simple summary for readers without a technical background -->
+- Provide a plain-language summary suitable for non-technical readers. Start this section with the header: "## Answer (Non-Technical)".
+
+## Additional Notes / References (Optional)
+
+- Any links, citations, or reasoning that support the card.
 
 ## Tags
 
-<!-- List relevant tags, separated by commas (e.g., statistics, hypothesis-testing, time-series) -->
-
-## Additional Notes
-
-<!-- Any references, reasoning, or context for this card? Is this an interview question, a real-world concept, or a commonly misunderstood topic? -->
+- List tags separated by commas (e.g., statistics, hypothesis-testing)
+````
