@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ card.name }} — DS Flashcards</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 24px; background:#f7f7f8;}
+      .container { max-width: 900px; margin: 0 auto; }
+      .card { background: white; padding: 20px; border-radius: 8px; border: 1px solid #e6e6e6; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+      .meta { color: #666; font-size: 0.9rem; margin-bottom: 12px; }
+      .question { font-size: 1.1rem; margin-bottom: 12px; }
+      .answer { margin-top: 12px; display: none; background: #fbfbfb; padding: 12px; border-radius:6px; border:1px solid #efefef; }
+      .controls { display:flex; gap:8px; margin-top: 12px; }
+      .btn { display:inline-block; padding:8px 12px; border-radius:6px; border:1px solid #ddd; background:white; cursor:pointer; text-decoration:none; color:inherit; }
+      .btn-primary { background:#0366d6; color:white; border-color:#0366d6; }
+      .nav { margin-top:12px; display:flex; justify-content:space-between; }
+      a { color: #0366d6; }
+      pre { background:#f0f0f0; padding:8px; overflow:auto; border-radius:4px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="{{ url_for('index') }}">&larr; Back to all cards</a>
+      <div class="card" style="margin-top:12px;">
+        <div class="meta">{{ card.filename }} • {{ card.tags | join(', ') }}</div>
+        <div class="question">{{ card_html.question | safe }}</div>
+
+        <div class="controls">
+          <button id="show-answer" class="btn btn-primary">Show Answer</button>
+          <a class="btn" href="#notes" onclick="document.getElementById('notes').scrollIntoView()">Notes</a>
+        </div>
+
+        <div id="answer" class="answer" aria-hidden="true">
+          <h4>Technical Answer</h4>
+          <div>{{ card_html.answer_tech | safe }}</div>
+
+          <h4>Non-Technical</h4>
+          <div>{{ card_html.answer_non | safe }}</div>
+        </div>
+
+        <div class="nav">
+          <div>
+            {% if prev_slug %}
+            <a class="btn" href="{{ url_for('show_card', slug=prev_slug) }}">&larr; Prev</a>
+            {% endif %}
+          </div>
+          <div>
+            {% if next_slug %}
+            <a class="btn" href="{{ url_for('show_card', slug=next_slug) }}">Next &rarr;</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div id="notes" style="margin-top:18px;">
+        <h3>Source</h3>
+        <p>Filename: <code>{{ card.filename }}</code></p>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('show-answer').addEventListener('click', function () {
+        var ans = document.getElementById('answer');
+        var shown = ans.style.display === 'block';
+        if (shown) {
+          ans.style.display = 'none';
+          this.textContent = 'Show Answer';
+          ans.setAttribute('aria-hidden', 'true');
+        } else {
+          ans.style.display = 'block';
+          this.textContent = 'Hide Answer';
+          ans.setAttribute('aria-hidden', 'false');
+        }
+      });
+    </script>
+  </body>
+</html>
