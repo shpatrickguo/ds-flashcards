@@ -38,3 +38,6 @@ Adam automatically **customizes step sizes** for each parameter and **smooths no
 - Less hyperparameter tuning than SGD
 - Handles sparse/noisy gradients automatically  
 - Default choice for most deep learning problems
+
+## Answer (Non-Technical)
+You can think of Adam as a smart way for a model to “learn how to learn.” Instead of taking the same size step every time, Adam looks at two things: how consistently a parameter has been changing and how noisy or uncertain those changes are. It then automatically adjusts the pace, slowing down where things are volatile and speeding up where it’s confident progress is real.
