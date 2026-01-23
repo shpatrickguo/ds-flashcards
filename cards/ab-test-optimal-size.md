@@ -14,7 +14,7 @@ The optimal sample size depends on three core inputs:
 
 For two independent samples with equal variances (continuous outcome), a common formula is:
 
-``n = ((Z_{α/2} + Z_{β})^2 * (σ_A^2 + σ_B^2)) / δ^2```
+```n = ((Z_{α/2} + Z_{β})^2 * (σ_A^2 + σ_B^2)) / δ^2```
 
 where `n` is the sample size per group, `Z_{α/2}` and `Z_{β}` are the standard normal critical values for the chosen `α` and `β`, `σ_A^2` and `σ_B^2` are the group variances, and `δ` is the minimum detectable difference in the metric.
 
