@@ -14,15 +14,15 @@ The optimal sample size depends on three core inputs:
 
 For two independent samples with equal variances (continuous outcome), a common formula is:
 
-n = ((Z_{α/2} + Z_{β})^2 * (σ_A^2 + σ_B^2)) / δ^2
+``n = ((Z_{α/2} + Z_{β})^2 * (σ_A^2 + σ_B^2)) / δ^2```
 
-where n is the sample size per group, Z_{α/2} and Z_{β} are the standard normal critical values for the chosen α and β, σ_A^2 and σ_B^2 are the group variances, and δ is the minimum detectable difference in the metric.
+where `n` is the sample size per group, `Z_{α/2}` and `Z_{β}` are the standard normal critical values for the chosen `α` and `β`, `σ_A^2` and `σ_B^2` are the group variances, and `δ` is the minimum detectable difference in the metric.
 
 For binary outcomes (e.g., conversion rates) you can use a proportions-based approximation:
 
-n = ((Z_{α/2} * sqrt{2 * p̄ * (1−p̄)} + Z_{β} * sqrt{p_A*(1−p_A) + p_B*(1−p_B)})^2) / (p_A − p_B)^2
+```n = ((Z_{α/2} * sqrt{2 * p̄ * (1−p̄)} + Z_{β} * sqrt{p_A*(1−p_A) + p_B*(1−p_B)})^2) / (p_A − p_B)^2```
 
-where p̄ = (p_A + p_B)/2 and p_A/p_B are the baseline and treatment conversion rates (expressed as decimals).
+where `p̄ = (p_A + p_B)/2` and `p_A/p_` are the baseline and treatment conversion rates (expressed as decimals).
 
 Practical steps to compute sample size:
 1. Choose your baseline rate (or estimate variance) from historical data.
